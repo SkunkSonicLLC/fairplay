@@ -22,11 +22,11 @@ export default function Home() {
           2level1
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-4 min-h-screen"> {/* Adjusted gap and added min-h-screen */}
         <div className="col-span-1">
           <KathySystem />
         </div>
-        <div className="col-span-1 bg-gray-100 p-4 rounded">
+        <div className="col-span-1 bg-gray-100 p-4 rounded overflow-auto max-h-[calc(100vh-150px)]"> {/* Added overflow and max-height */}
           <h2 className="text-2xl font-bold mb-4">Song in Progress</h2>
           {verses.length === 0 ? (
             <p className="text-gray-500">No verses written yet</p>
@@ -35,8 +35,14 @@ export default function Home() {
               {verses.map((verse, index) => (
                 <div
                   key={verse.id}
-                  className="p-4 bg-white rounded shadow-sm"
+                  className="p-4 bg-white rounded shadow-sm relative" // Added relative positioning
                 >
+                  {/* Domino-like dots */}
+                  <div className="absolute top-2 right-2 flex space-x-1">
+                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                  </div>
+
                   <p className="whitespace-pre-wrap">{verse.content}</p>
                   <div className="text-sm text-gray-600 mt-2">
                     <strong>Category:</strong> {verse.category.row.name} × {verse.category.column.name}
