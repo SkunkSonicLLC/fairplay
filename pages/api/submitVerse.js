@@ -1,9 +1,4 @@
 // pages/api/submitVerse.js
-import { v4 as uuidv4 } from 'uuid';
-
-// In-memory storage (replace with database in production)
-const verses = [];
-
 export default async function handler(req, res) {
   // Enable CORS for all routes
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -53,9 +48,14 @@ export default async function handler(req, res) {
       });
     }
 
+    // Generate a simple unique ID
+    const generateUniqueId = () => {
+      return `verse_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    };
+
     // Prepare verse object
     const newVerse = {
-      id: uuidv4(), // Generate unique ID
+      id: generateUniqueId(), // Generate unique ID
       systemName,
       content,
       categoryIds: {
@@ -77,6 +77,7 @@ export default async function handler(req, res) {
     };
 
     // In-memory storage (replace with database in production)
+    const verses = [];
     verses.push(newVerse);
 
     // Optional: Log verse (replace with proper logging in production)
@@ -96,6 +97,3 @@ export default async function handler(req, res) {
     });
   }
 }
-
-// Optional: Export verses for potential future use or debugging
-export { verses };
