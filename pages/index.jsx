@@ -14,7 +14,7 @@ export default function Home() {
           onClick={resetSession}
           className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
         >
-          reset session
+          2level1
         </button>
       </div>
       <div className="space-y-12">
