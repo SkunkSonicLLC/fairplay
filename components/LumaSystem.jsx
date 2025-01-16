@@ -97,7 +97,7 @@ const LumaSystem = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h2 className="text-3xl font-bold mb-4">Luma System: Global Challenges Song</h2>
+      <h2 className="text-3xl font-bold mb-4 text-black">Luma System: Global Challenges Song</h2>
       
       {/* Category Selection Grid */}
       <div className="grid grid-cols-6 gap-4 mb-6">
@@ -110,7 +110,7 @@ const LumaSystem = () => {
 
         {rowCategories.map((row) => (
           <React.Fragment key={row.id}>
-            <div className="font-semibold">{row.name}</div>
+            <div className="font-semibold text-yellow-800">{row.name}</div>
             {columnCategories.map((col) => (
               <button
                 key={col.id}
@@ -162,71 +162,6 @@ const LumaSystem = () => {
           )}
         </div>
       )}
-
-      {/* Compiled Song View with Reordering */}
-      <div className="mt-8">
-        <h3 className="text-2xl font-semibold mb-4">Song in Progress</h3>
-        {verses.length === 0 ? (
-          <p className="text-gray-500">No verses written yet</p>
-        ) : (
-          <div className="space-y-4">
-            {verses.map((verse, index) => (
-              <div
-                key={verse.id}
-                className="p-4 bg-gray-50 rounded flex items-center justify-between"
-              >
-                <div className="flex-grow mr-4">
-                  <p className="whitespace-pre-wrap">{verse.content}</p>
-                  <p className="text-sm text-gray-600 mt-2">
-                    Category: {verse.category.row.name} × {verse.category.column.name}
-                    <span className="ml-2 text-green-500">
-                      (From {verse.system || 'Unknown System'})
-                    </span>
-                  </p>
-                </div>
-                <div className="flex flex-col space-y-2 mr-4">
-                  <button 
-                    onClick={() => moveVerseUp(index)}
-                    disabled={index === 0}
-                    className={`text-sm ${
-                      index === 0 
-                        ? 'text-gray-300 cursor-not-allowed' 
-                        : 'text-green-500 hover:text-green-700'
-                    }`}
-                  >
-                    ↑ Move Up
-                  </button>
-                  <button 
-                    onClick={() => moveVerseDown(index)}
-                    disabled={index === verses.length - 1}
-                    className={`text-sm ${
-                      index === verses.length - 1 
-                        ? 'text-gray-300 cursor-not-allowed' 
-                        : 'text-green-500 hover:text-green-700'
-                    }`}
-                  >
-                    ↓ Move Down
-                  </button>
-                </div>
-                <div className="flex space-x-2">
-                  <button 
-                    onClick={() => handleEditVerse(verse)}
-                    className="text-green-500 hover:text-green-700"
-                  >
-                    Edit
-                  </button>
-                  <button 
-                    onClick={() => handleDeleteVerse(verse.id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
     </div>
   );
 };
