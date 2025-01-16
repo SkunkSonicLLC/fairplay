@@ -19,7 +19,7 @@ export default function Home() {
           }}
           className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
         >
-          2level1
+          start over
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 min-h-screen">
