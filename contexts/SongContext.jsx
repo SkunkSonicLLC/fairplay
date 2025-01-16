@@ -40,6 +40,11 @@ export function SongProvider({ children }) {
 
   // Add verse
   const addVerse = (verse) => {
+    if (!verse.content || !verse.category) {
+      console.error('Invalid verse submission');
+      return null;
+    }
+    
     const newVerse = {
       ...verse,
       id: `verse_${Date.now()}`,
