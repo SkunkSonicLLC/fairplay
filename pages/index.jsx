@@ -4,7 +4,7 @@ import KathySystem from '../components/KathySystem';
 import LumaSystem from '../components/LumaSystem';
 
 export default function Home() {
-  const { verses, moveVerse, deleteVerse } = useSongContext();
+  const { verses, moveVerse, deleteVerse, resetSession } = useSongContext();
 
   return (
     <div className="container mx-auto p-4">
@@ -25,9 +25,6 @@ export default function Home() {
       <div className="grid grid-cols-3 gap-6">
         <div className="col-span-1">
           <KathySystem />
-        </div>
-        <div className="col-span-1">
-          <LumaSystem />
         </div>
         <div className="col-span-1 bg-gray-100 p-4 rounded">
           <h2 className="text-2xl font-bold mb-4">Song in Progress</h2>
@@ -88,6 +85,9 @@ export default function Home() {
               ))}
             </div>
           )}
+        </div>
+        <div className="col-span-1">
+          <LumaSystem />
         </div>
       </div>
     </div>
