@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { formatTimestamp } from '../../lib/utils';
 
 interface Verse {
