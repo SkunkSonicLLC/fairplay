@@ -1,5 +1,5 @@
 // src/components/song/VerseEditor.tsx
-import React, { useState, useEffect } from 'react';
+// import React, { useState, useEffect } from 'react';
 import { useSong } from '../../contexts/SongContext';
 import { validateVerse } from '../../lib/utils';
 
