@@ -1,100 +1,69 @@
-import React from 'react';
-import { useSongContext } from '../contexts/SongContext';
-import KathySystem from '../components/KathySystem';
-import LumaSystem from '../components/LumaSystem';
+// src/pages/index.tsx
+import type { NextPage } from 'next';
+import Link from 'next/link';
+import Layout from '../components/layout/Layout';
 
-export default function Home() {
-  const { verses, moveVerse, deleteVerse, resetSession } = useSongContext();
-
+const Home: NextPage = () => {
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-8">
-        <h1 className="text-4xl font-bold">2level1</h1>
-        <button 
-          onClick={() => {
-            const confirmReset = window.confirm('Are you sure you want to start a new session?');
-            if (confirmReset) {
-              resetSession();
-            }
-          }}
-          className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors"
-        >
-          start over
-        </button>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 min-h-screen">
-        <div className="col-span-1">
-          <KathySystem />
+    <Layout>
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+            <span className="block">Welcome to FairPlay</span>
+            <span className="block text-indigo-600">Creative Writing Game</span>
+          </h1>
+          <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+            Choose your creative journey with either the Kathy System or Luma System.
+          </p>
+          <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+            <Link 
+              href="/kathy"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 mx-2"
+            >
+              Kathy System
+            </Link>
+            <Link
+              href="/luma"
+              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 mx-2"
+            >
+              Luma System
+            </Link>
+          </div>
         </div>
-        <div className="col-span-1 bg-gray-100 p-4 rounded overflow-auto max-h-[calc(100vh-150px)]">
-          <h2 className="text-2xl font-bold mb-4">Song in Progress</h2>
-          {verses.length === 0 ? (
-            <p className="text-gray-500">No verses written yet</p>
-          ) : (
-            <div className="space-y-4">
-              {verses.map((verse, index) => (
-                <div
-                  key={verse.id}
-                  className="p-4 bg-white rounded shadow-sm relative"
-                >
-                  <div className="absolute top-2 right-2 flex space-x-1">
-                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                    <div className="w-2 h-2 bg-gray-300 rounded-full"></div>
-                  </div>
 
-                  <p className="whitespace-pre-wrap">{verse.content}</p>
-                  <div className="text-sm text-gray-600 mt-2">
-                    <strong>Category:</strong> {verse.category.row.name} × {verse.category.column.name}
-                    <span className="ml-2 text-blue-500">
-                      (From {verse.system || 'Unknown System'})
-                    </span>
-                  </div>
-                  <div className="flex space-x-2 mt-2">
-                    <button 
-                      onClick={() => {
-                        if (index > 0) moveVerse(index, index - 1);
-                      }}
-                      disabled={index === 0}
-                      className={`text-sm ${
-                        index === 0 
-                          ? 'text-gray-300 cursor-not-allowed' 
-                          : 'text-blue-500 hover:text-blue-700'
-                      }`}
-                    >
-                      ↑ Move Up
-                    </button>
-                    <button 
-                      onClick={() => {
-                        if (index < verses.length - 1) moveVerse(index, index + 1);
-                      }}
-                      disabled={index === verses.length - 1}
-                      className={`text-sm ${
-                        index === verses.length - 1 
-                          ? 'text-gray-300 cursor-not-allowed' 
-                          : 'text-blue-500 hover:text-blue-700'
-                      }`}
-                    >
-                      ↓ Move Down
-                    </button>
-                    <button 
-                      onClick={() => {
-                        const confirmDelete = window.confirm('Are you sure you want to delete this verse?');
-                        if (confirmDelete) deleteVerse(verse.id);
-                      }}
-                      className="text-red-500 hover:text-red-700 text-sm"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              ))}
+        {/* System descriptions */}
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                Kathy System
+              </h3>
+              <div className="mt-2 text-sm text-gray-500">
+                <p>
+                  A 4x4 grid system focusing on environmental and community themes.
+                  Perfect for collaborative storytelling and social impact narratives.
+                </p>
+              </div>
             </div>
-          )}
-        </div>
-        <div className="col-span-1">
-          <LumaSystem />
+          </div>
+
+          <div className="bg-white overflow-hidden shadow rounded-lg">
+            <div className="px-4 py-5 sm:p-6">
+              <h3 className="text-lg leading-6 font-medium text-gray-900">
+                Luma System
+              </h3>
+              <div className="mt-2 text-sm text-gray-500">
+                <p>
+                  A 5x5 grid system exploring light, motion, and experimental themes.
+                  Ideal for creative expression and artistic exploration.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
-}
+};
+
+export default Home;
