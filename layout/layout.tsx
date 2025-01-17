@@ -1,5 +1,5 @@
 // src/components/layout/Layout.tsx
-import React from 'react';
+// import React from 'react';
 import Head from 'next/head';
 
 interface LayoutProps {
