@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { GridPosition } from '../../types/core';
 
 interface CellProps {
